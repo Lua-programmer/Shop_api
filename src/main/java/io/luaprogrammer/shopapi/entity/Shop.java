@@ -1,5 +1,6 @@
 package io.luaprogrammer.shopapi.entity;
 
+import io.luaprogrammer.shopapi.controller.dto.ShopDTO;
 import io.luaprogrammer.shopapi.controller.dto.ShopItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Entity(name = "shop")
@@ -31,11 +33,16 @@ public class Shop {
             mappedBy = "shop")
     private List<ShopItem> items;
 
-    public static ShopItem convert(ShopItemDTO shopItemDTO) {
-        ShopItem shopItem = new ShopItem();
-        shopItem.setProductIdentifier(shopItemDTO.getProductIdentifier());
-                shopItem.setAmount(shopItemDTO.getAmount());
-                shopItem.setPrice(shopItemDTO.getPrice());
-        return shopItem;
+    public static Shop convert(ShopDTO shopDTO) {
+        Shop shop = new Shop();
+        shop.setIdentifier(shopDTO.getIdentifier());
+        shop.setDateShop(shopDTO.getDateShop());
+        shop.setStatus(shopDTO.getStatus());
+        shop.setItems(shopDTO
+                .getItems()
+                .stream()
+                .map(ShopItem::convert)
+                .collect(Collectors.toList()));
+        return shop;
     }
 }

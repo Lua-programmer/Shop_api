@@ -23,7 +23,7 @@ public class ShopDTO {
         shopDTO.setItems(shop
                 .getItems()
                 .stream()
-                .map(i -> ShopItemDTO.convert(i))
+                .map(ShopItemDTO::convert)
                 .collect(Collectors.toList()));
         return shopDTO;
     }
