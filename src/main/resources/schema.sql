@@ -1,0 +1,14 @@
+CREATE TABLE shop(
+    id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    identifier VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    date_shop DATE
+);
+
+CREATE TABLE shop_item(
+    id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    product_identifier VARCHAR(255) NOT NULL,
+    amount INTEGER NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    shop_id BIGINT REFERENCES shop(id)
+)
