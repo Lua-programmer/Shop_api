@@ -1,5 +1,6 @@
 package io.luaprogrammer.shopapi.entity;
 
+import io.luaprogrammer.shopapi.controller.dto.ShopItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,15 @@ public class Shop {
     private LocalDate dateShop;
 
     @OneToMany(fetch = FetchType.EAGER,
-        cascade = CascadeType.ALL,
+            cascade = CascadeType.ALL,
             mappedBy = "shop")
     private List<ShopItem> items;
+
+    public static ShopItem convert(ShopItemDTO shopItemDTO) {
+        ShopItem shopItem = new ShopItem();
+        shopItem.setProductIdentifier(shopItemDTO.getProductIdentifier());
+                shopItem.setAmount(shopItemDTO.getAmount());
+                shopItem.setPrice(shopItemDTO.getPrice());
+        return shopItem;
+    }
 }

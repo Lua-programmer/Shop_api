@@ -1,8 +1,7 @@
 package io.luaprogrammer.shopapi.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import io.luaprogrammer.shopapi.controller.dto.ShopItemDTO;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,7 +17,7 @@ public class ShopItem {
     private Long id;
 
     @Column(name = "product_identifier")
-    private String productIdetifier;
+    private String productIdentifier;
 
     @Column(name = "amount")
     private Integer amount;
@@ -29,4 +28,12 @@ public class ShopItem {
     @ManyToOne
     @JoinColumn(name = "shop_id", referencedColumnName = "id")
     private Shop shop;
+
+    public static ShopItem convert(ShopItemDTO shopItemDTO) {
+        ShopItem shopItem = new ShopItem();
+        shopItem.setProductIdentifier(shopItemDTO.getProductIdentifier());
+                shopItem.setAmount(shopItemDTO.getAmount());
+                shopItem.setPrice(shopItemDTO.getPrice());
+        return shopItem;
+    }
 }
