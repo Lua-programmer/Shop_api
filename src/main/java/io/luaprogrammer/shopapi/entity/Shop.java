@@ -1,7 +1,6 @@
 package io.luaprogrammer.shopapi.entity;
 
 import io.luaprogrammer.shopapi.controller.dto.ShopDTO;
-import io.luaprogrammer.shopapi.controller.dto.ShopItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ShopServiceImpl implements ShopService {
-    private static ShopRepository shopRepository;
+    private final ShopRepository shopRepository;
 
     @Override
     public List<ShopDTO> getShop() {
@@ -28,7 +27,7 @@ public class ShopServiceImpl implements ShopService {
     public ShopDTO saveShop(ShopDTO shopDTO) {
         shopDTO.setIdentifier(
                 UUID.randomUUID().toString());
-        shopDTO.setDateShop(LocalDate.from(LocalTime.now()));
+        shopDTO.setDateShop(LocalDate.now());
         shopDTO.setStatus("PENDING");
         Shop shop = Shop.convert(shopDTO);
         for (ShopItem shopItem : shop.getItems()) {
