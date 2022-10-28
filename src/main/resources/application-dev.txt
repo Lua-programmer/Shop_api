@@ -1,0 +1,16 @@
+MODELO PARA UTILIZAR NO application-dev.yml BASTA TROCAR A EXTENSÃO txt PARA yml E COLOCAR SEUS DADOS DO BANCO.
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:h2:mem:teste
+    username:
+    password:
+    driver-class-name: org.h2.Driver
